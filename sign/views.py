@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 #导入,可以使此次请求忽略csrf校验
 from django.views.decorators.csrf import csrf_exempt
 from sign.models import Event, Guest
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
  
 #在处理函数加此装饰器即可
 @csrf_exempt
@@ -40,7 +41,15 @@ def event_manage(request):
     # return render(request, "event_manage.html", {"user":username})
     event_list = Event.objects.all()
     username = request.session.get('user', '')
-    return render(request, "event_manage.html", {"user": username, "events": event_list})
+    paginator = Paginator(event_list, 10)
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    return render(request, "event_manage.html", {"user": username, "events": contacts})
 
 # 发布会名称搜索
 @login_required
@@ -48,14 +57,31 @@ def event_search_name(requtest):
     username = requtest.session.get('user', '')
     event_search_name = requtest.GET.get("name", "")
     event_list = Event.objects.filter(name_contanis=event_search_name)
-    return render(requtest, "event_manage.html", {"user": username, "events":event_list})
+    paginator = Paginator(event_list, 10)
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    return render(requtest, "event_manage.html", {"user": username, "events":contacts})
 
 # 嘉宾管理
 @login_required
 def guest_manage(request):
     username = request.session.get('user', '')
     guest_list = Guest.objects.all()
-    return render(request, "guest_manage.html", {"user": username, "guests": guest_list})
+    paginator = Paginator(guest_list, 10)
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    # return render(request, "guest_manage.html", {"user": username, "guests": guest_list})
+    return render(request, "guest_manage.html", {"user": username, "guests": contacts})
 
 # 嘉宾搜索
 @login_required
@@ -63,4 +89,13 @@ def guest_search_name(requtest):
     username = requtest.session.get('user', '')
     guest_search_name = requtest.GET.get("name", "")
     event_list = Event.objects.filter(name_contanis=guest_search_name)
-    return render(requtest, "event_manage.html", {"user": username, "events":event_list})
+    paginator = Paginator(event_list, 10)
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        contacts = paginator.page(1)
+    except EmptyPage:
+        contacts = paginator.page(paginator.num_pages)
+    # return render(requtest, "event_manage.html", {"user": username, "events":event_list})
+    return render(requtest, "event_manage.html", {"user": username, "guests":contacts})
