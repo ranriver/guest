@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/login/', views.index),
     path('event_search_name/', views.event_search_name),
     path('guest_search_name/', views.guest_search_name),
-    path('sign_index/(?P<eid>[0-9]+)/$', views.sign_index),
-    path('sign_index_action/(?P<eid>[0-9]+)/$', views.sign_index_action),
+    path('sign_index/<int:eid>/', views.sign_index),
+    path('sign_index_action/<int:eid>/', views.sign_index_action),
     path('sign_index/(?P<eid>[0-9]+)/', views.logout),
 ]
