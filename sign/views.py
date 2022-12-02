@@ -39,7 +39,7 @@ def login_action(request):
 def event_manage(request):
     # username = request.session.get('user', '') # read the browser's session
     # return render(request, "event_manage.html", {"user":username})
-    event_list = Event.objects.all()
+    event_list = Event.objects.all().order_by('id')
     username = request.session.get('user', '')
     paginator = Paginator(event_list, 10)
     page = request.GET.get('page')
@@ -56,7 +56,7 @@ def event_manage(request):
 def event_search_name(requtest):
     username = requtest.session.get('user', '')
     event_search_name = requtest.GET.get("name", "")
-    event_list = Event.objects.filter(name_contanis=event_search_name)
+    event_list = Event.objects.filter(name_contanis=event_search_name).order_by('id')
     paginator = Paginator(event_list, 10)
     page = request.GET.get('page')
     try:
@@ -71,7 +71,7 @@ def event_search_name(requtest):
 @login_required
 def guest_manage(request):
     username = request.session.get('user', '')
-    guest_list = Guest.objects.all()
+    guest_list = Guest.objects.all().order_by('id')
     paginator = Paginator(guest_list, 10)
     page = request.GET.get('page')
     try:
@@ -88,7 +88,7 @@ def guest_manage(request):
 def guest_search_name(requtest):
     username = requtest.session.get('user', '')
     guest_search_name = requtest.GET.get("name", "")
-    event_list = Event.objects.filter(name_contanis=guest_search_name)
+    event_list = Event.objects.filter(name_contanis=guest_search_name).order_by('id')
     paginator = Paginator(event_list, 10)
     page = request.GET.get('page')
     try:
