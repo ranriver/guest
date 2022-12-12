@@ -30,4 +30,5 @@ urlpatterns = [
     path('sign_index/<int:eid>/', views.sign_index),
     path('sign_index_action/<int:eid>/', views.sign_index_action),
     path('logout/', views.logout),
+    path('api/', include('sign.urls', namespace="sign")),
 ]
