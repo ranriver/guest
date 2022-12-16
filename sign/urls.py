@@ -4,6 +4,7 @@
 # @File: urls.py
 from django.urls import path, include
 from sign import views_if
+from sign import views_if_sec
 
 urlpatterns = [
     # sign system interface:
@@ -19,9 +20,9 @@ urlpatterns = [
     path('user_sign/', views_if.user_sign, name='user_sign'),
     # security interface:
     # ex : /api/sec_get_event_list/
-    # path('sec_get_event_list/', views_if_sec.get_event_list, name='get_event_list'),
+    path('sec_get_event_list/', views_if_sec.get_event_list, name='get_event_list'),
     # ex : /api/sec_add_event/
-    # path('sec_add_event/', views_if_sec.add_event, name='add_event'),
+    path('sec_add_event/', views_if_sec.add_event, name='add_event'),
     # ex : /api/sec_get_guest_list/
-    # path('sec_get_guest_list/', views_if_sec.get_guest_list, name='get_guest_list'),
+    path('sec_get_guest_list/', views_if_sec.get_guest_list, name='get_guest_list'),
 ]
