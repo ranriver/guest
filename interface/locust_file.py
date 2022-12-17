@@ -2,7 +2,7 @@
 # @Time: 2022/12/16 17:10
 # @Author: river
 # @File: locustfile.py
-from locust import HttpLocust, TaskSet, task
+from locust import HttpUser, TaskSet, task
 
 
 # web性能测试
@@ -12,7 +12,7 @@ class UserBehavior(TaskSet):
         self.login()
 
     def login(self):
-        self.client.post("/login_action", {"username": "admin", "password": "admin123456"})
+        self.client.post("/admin", {"username": "admin", "password": "admin123456"})
 
     @task(2)
     def event_manage(self):
@@ -24,10 +24,10 @@ class UserBehavior(TaskSet):
 
     @task(1)
     def search_phone(self):
-        self.client.get("/search_phone/", params={"phone": '13800112541'})
+        self.client.get("/index/")
 
 
-class WebsiteUser(HttpLocust):
-    task_set = UserBehavior
+class WebsiteUser(HttpUser):
+    tasks = [UserBehavior]
     min_wait = 3000
     max_wait = 6000
