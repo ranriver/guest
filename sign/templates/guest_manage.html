@@ -1,11 +1,16 @@
+<!--
 <html lang="zh-CN">
     <head>
-        {% load django_bootstrap5 %}
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
-        <title>Guest Manage</title>
-    </head>
-    <body>
+	    {% load django_bootstrap5 %}
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+		<title>Guest Manage</title>
+	</head>
+	<body role="document">
+-->
+
+{% extends "base.html" %}
+{% block content %}
         <!-- 导航栏 -->
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -76,5 +81,8 @@
                 {% endif %}
             </span>
         </div>
+{% endblock %}
+    <!--
     </body>
 </html>
+    -->

@@ -1,11 +1,16 @@
+<!--
 <html lang="zh-CN">
     <head>
 	    {% load django_bootstrap5 %}
-		{% bootstrap_css%}
+		{% bootstrap_css %}
 		{% bootstrap_javascript %}
-		<title>Sign Index Page</title>
+		<title>Guest Manage</title>
 	</head>
 	<body role="document">
+-->
+
+{% extends "base.html" %}
+{% block content %}
 	    <!-- 导航栏 -->
     	<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
@@ -37,8 +42,11 @@
 				</form>
 			</div>
 		</div>
-	</body>
+{% endblock %}
+    <!--
+    </body>
 </html>
+    -->
 
 
 
