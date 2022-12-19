@@ -79,27 +79,12 @@ WSGI_APPLICATION = 'guest.wsgi.application'
 #    }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'HOST': '192.168.1.201',
-#         'PORT': '3306',
-#         'NAME': 'guest',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         #        'OPTIONS': {
-#         #            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         #            },
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '192.168.1.201',
         'PORT': '3306',
-        'NAME': 'guest_test',
+        'NAME': 'guest',
         'USER': 'root',
         'PASSWORD': 'root',
         #        'OPTIONS': {
@@ -107,6 +92,21 @@ DATABASES = {
         #            },
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': '192.168.1.201',
+#         'PORT': '3306',
+#         'NAME': 'guest_test',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         #        'OPTIONS': {
+#         #            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         #            },
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
