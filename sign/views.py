@@ -39,7 +39,7 @@ def login_action(request):
 
 
 # 发布会管理
-@login_required
+# @login_required
 def event_manage(request):
     # username = request.session.get('user', '') # read the browser's session
     # return render(request, "event_manage.html", {"user":username})
@@ -57,7 +57,7 @@ def event_manage(request):
 
 
 # 发布会名称搜索
-@login_required
+# @login_required
 def event_search_name(requtest):
     username = requtest.session.get('user', '')
     event_search_name = requtest.GET.get("name", "")
@@ -74,7 +74,7 @@ def event_search_name(requtest):
 
 
 # 嘉宾管理
-@login_required
+# @login_required
 def guest_manage(request):
     username = request.session.get('user', '')
     guest_list = Guest.objects.all().order_by('id')
@@ -91,7 +91,7 @@ def guest_manage(request):
 
 
 # 嘉宾搜索
-@login_required
+# @login_required
 def guest_search_name(requtest):
     username = requtest.session.get('user', '')
     guest_search_name = requtest.GET.get("name", "")
@@ -109,14 +109,14 @@ def guest_search_name(requtest):
 
 
 # 签到页面
-@login_required
+# @login_required
 def sign_index(request, eid):
     event = get_object_or_404(Event, id=eid)
     return render(request, 'sign_index.html', {'event': event})
 
 
 # 签到动作
-@login_required
+# @login_required
 def sign_index_action(request, eid):
     event = get_object_or_404(Event, id=eid)
     phone = request.POST.get('phone', '')
@@ -136,7 +136,7 @@ def sign_index_action(request, eid):
 
 
 # 退出登录
-@login_required
+# @login_required
 def logout(request):
     auth.logout(request)
     response = HttpResponseRedirect('/index/')
